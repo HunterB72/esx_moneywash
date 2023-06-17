@@ -9,13 +9,13 @@ AddEventHandler('moneyWash:washMoney', function()
             
         local feeAmount = (blackMoney * Config.FeeAmount) / 100
             
-        TriggerClientEvent('esx:showNotification', plr.source, TranslateCap('start_washing')
+        TriggerClientEvent('esx:showNotification', plr.source, TranslateCap('start_washing'))
             
         Citizen.Wait(5000)
         
         plr.addMoney(blackMoney - feeAmount)
-        TriggerClientEvent('esx.showNotification', plr.source, TranslateCap('go_out')
+        TriggerClientEvent('esx.showNotification', plr.source, TranslateCap('go_out'))
     else
-        TriggerClientEvent('esx.showNotification', plr.source, TranslateCap('no_dmoney')
+        TriggerClientEvent('esx.showNotification', plr.source, TranslateCap('no_dmoney'))
     end
 end)
