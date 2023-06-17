@@ -16,8 +16,8 @@ function Draw3DText(x,y,z, text, scale)
     DrawRect(_x, _y + 0.0150, 0.06 + factor, 0.03, 41, 11, 41, 100)
 end
 
-    PlayerLoaded = true
-    local location = Config.Location
+PlayerLoaded = true
+local location = Config.Location
     while true do
         local pedCoords = GetEntityCoords(PlayerPedId())
         if PlayerLoaded == true then
@@ -28,12 +28,12 @@ end
                         TriggerServerEvent('moneyWash:washMoney')
                         Citizen.CreateThread(function()
                             allowWash = false
-                            Citizen.Wait(2500)
+                            Citizen.Wait(5000)
                             allowWash = true
                         end)
                     end
                 end
             end
         end
-        Citizen.Wait(0)
-    end
+    Citizen.Wait(0)
+end
