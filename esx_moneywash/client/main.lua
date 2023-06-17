@@ -22,7 +22,7 @@ end
         local pedCoords = GetEntityCoords(PlayerPedId())
         if PlayerLoaded == true then
             if Vdist(pedCoords, location) < Config.MaxDistance then
-                Draw3DText(location.x, location.y, location.z, "~w~Press ~y~[E] ~w~to wash your dirty money.", 0.4)
+                Draw3DText(location.x, location.y, location.z, TranslateCap("press_to_wash"), 0.4)
                 if Vdist(pedCoords, location) < Config.ClickDistance and IsControlPressed(1, 38) then
                     if allowWash == true then
                         TriggerServerEvent('moneyWash:washMoney')
