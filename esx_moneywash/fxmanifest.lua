@@ -1,17 +1,18 @@
 fx_version 'adamant'
 game 'gta5'
 
-server_scripts {
-    'server/main.lua'
-}
-
-shared_scripts {
-    'config.lua',
-    '@es_extended/imports.lua',
-    '@es_extended/locale.lua',
-    'locale/*.lua'
-}
+shared_script '@es_extended/imports.lua'
 
 client_scripts {
-    'client/main.lua'
+    '@es_extended/locale.lua',
+    'locales/*.lua',
+    'config.lua',
+    'client/main.lua',
+}
+
+server_scripts {
+    '@es_extended/locale.lua',
+    'locales/*.lua',
+    'config.lua',
+    'server/main.lua',
 }
