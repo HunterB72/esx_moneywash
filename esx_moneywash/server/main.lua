@@ -6,11 +6,16 @@ AddEventHandler('moneyWash:washMoney', function()
     local blackMoney = plr.getAccount('black_money').money
     if blackMoney ~= 0 then
         plr.removeAccountMoney('black_money', blackMoney)
-        TriggerClientEvent('esx:showNotification', plr.source, 'Washing your ~g~$' .. tostring(blackMoney) ..' dirty money!')
+            
+        local feeAmount = (blackMoney * Config.FeeAmount) / 100
+            
+        TriggerClientEvent('esx:showNotification', plr.source, TranslateCap('start_washing')
+            
         Citizen.Wait(5000)
-        plr.addMoney(blackMoney)
-        TriggerClientEvent('esx.showNotification', plr.source, "Run before the cops get here.")
+        
+        plr.addMoney(blackMoney - feeAmount)
+        TriggerClientEvent('esx.showNotification', plr.source, TranslateCap('go_out')
     else
-        TriggerClientEvent('esx.showNotification', plr.source, 'You dont have any dirty money, come back when you do.')
+        TriggerClientEvent('esx.showNotification', plr.source, TranslateCap('no_dmoney')
     end
 end)
