@@ -3,3 +3,4 @@ Config = {}
 Config.Location = vector3(1136.33 , -989.39 , 46.11)
 Config.MaxDistance = 4
 Config.ClickDistance = 2
+Config.FeeAmount = 70 -- % Amount of fees applied (70 is the % received by the player)
