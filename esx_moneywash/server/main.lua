@@ -2,15 +2,23 @@ ESX = exports['es_extended']:getSharedObject()
 
 RegisterServerEvent('moneyWash:washMoney')
 AddEventHandler('moneyWash:washMoney', function()
-    local plr = ESX.GetPlayerFromId(source)
-    local blackMoney = plr.getAccount('black_money').money
-    if blackMoney ~= 0 then
-        plr.removeAccountMoney('black_money', blackMoney)
-        TriggerClientEvent('esx:showNotification', plr.source, 'Washing your ~g~$' .. tostring(blackMoney) ..' dirty money!')
+    local src = source
+    local xPlayer = ESX.GetPlayerFromId(src)
+    local blackMoney = xPlayer.getAccount('black_money').money
+    if blackMoney >= Config.MinMoney then
+        
+        xPlayer.removeAccountMoney('black_money', blackMoney)
+            
+        local feeAmount = (blackMoney * Config.FeeAmount) / 100
+            
+        TriggerClientEvent('esx:showNotification', src, TranslateCap("start_washing", ESX.Math.GroupDigits(blackMoney)))
+            
         Citizen.Wait(5000)
-        plr.addMoney(blackMoney)
-        TriggerClientEvent('esx.showNotification', plr.source, "Run before the cops get here.")
+        
+        xPlayer.addMoney(blackMoney - feeAmount)
+
+        TriggerClientEvent('esx:showNotification', src, TranslateCap("go_out", ESX.Math.GroupDigits(feeAmount)))
     else
-        TriggerClientEvent('esx.showNotification', plr.source, 'You dont have any dirty money, come back when you do.')
+        TriggerClientEvent('esx:showNotification', src, TranslateCap("no_dmoney", ESX.Math.GroupDigits(blackMoney)))
     end
 end)
